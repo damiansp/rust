@@ -1,18 +1,29 @@
 use image::ColorType;
 use image::png::PNGEncoder;
 use num::Complex;
+use std::env;
 use std::fs::File;
-use std::str::FromStr
+use std::str::FromStr;
 
 
-fn main() {}
-
-
-fn complex_square_add_loop(c: Complex<f64>) {
-    let mut z = Complex {re: 0.0, im: 0.0};
-    loop {
-        z = z*z + c;
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    if args.len() != 5 {
+        eprintln!(
+            "Usage: {} FILE PIXELS UPPERLEFT LOWERRIGHT",
+            args[0]);
+        eprintln!(
+            "Example: {} mandel.png 1000x750 -1.20,0.35 -1,0.20",
+            args[0]);
+        std::process::exit(1);
     }
+    let bounds = parse_pair(&args[2], 'x').expect("error parsing dimensions");
+    let upper_left = parse_complex(&args[3]).expect("error parsing upper left");
+    let lower_right = parse_complex(&args[4])
+        .expect("error parsing lower right");
+    let mut pixels = vec![0; bounds.0 * bounds.1];
+    render(&mut pixels, bounds, upper_left, lower_right);
+    write_image(&args[1], &pixels, bounds).expect("error writing PNG file");
 }
 
 
@@ -114,14 +125,14 @@ fn render(
     for row in 0..bounds.1 {
         for column in 0..bounds.1 {
             let point = pixel_to_point(
-                bounds, (column, row), upper_left, lower_right)
+                bounds, (column, row), upper_left, lower_right);
             pixels[row * bounds.0 + column] = match escape_time(point, 255) {
                 None => 0,
                 Some(count) => 255 - count as u8
             };
         }
     }
-)
+}
 
 
 /// Write the buffer `pixels`, whose dimensions are given by `bounds`, to the
@@ -135,3 +146,5 @@ fn write_image(
         pixels, bounds.0 as u32, bounds.1 as u32, ColorType::Gray(8))?;
     Ok(())
 }
+
+
