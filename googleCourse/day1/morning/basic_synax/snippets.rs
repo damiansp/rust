@@ -30,3 +30,17 @@ println!("arr: {:?}", arr);
 
 let s: &[i32] = &arr[2..4];
 println!("s: {:?}", s);  // s: [3, 4]
+
+
+// String and str
+let s1: &str = "World!";  // immutable ref to string slice
+println!("s1: {s1}");
+
+let mut s2: String = String::from("Hello, ");  // mutable string buffer
+println!("s2: {s2}");;
+
+s2.push_str(s1);
+println!("s2: {s2}");
+
+let s3: &str = &s2[8..];
+println!("s3: {s3}");
