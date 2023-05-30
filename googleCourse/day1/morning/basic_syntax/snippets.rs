@@ -44,3 +44,36 @@ println!("s2: {s2}");
 
 let s3: &str = &s2[8..];
 println!("s3: {s3}");
+
+
+// Functions
+fn main() {
+    print_fizzbuzz_to(20);
+}
+
+
+fn print_fizzbuzz_to(n: u32) {
+    for i in 1..=n {
+        println!("{}", fizzbuzz(i));
+    }
+}
+
+
+fn fizzbuzz(n: u32) -> String {
+    let fizz = if is_divisible(n, 3) { "fizz" } else { "" };
+    let buzz = if is_divisible(n, 5) { "buzz" } else { "" };
+    if fizz.is_empty() && buzz.is_empty() {
+        return format!(("{n}"));
+    }
+    format!("{fizz}{buzz}")
+}
+
+
+/// Determine whether the first argument is divisible by the second argument.
+/// If the second argument is zero, return false.
+fn is_divisible(n: u32, divisor: u32) -> bool {
+    if divisor == 0 {
+        return false;  // edge case; early return
+    } 
+    n % divisor == 0   // last expression is returned (if no semicolon)
+}
