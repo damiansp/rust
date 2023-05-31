@@ -77,3 +77,31 @@ fn is_divisible(n: u32, divisor: u32) -> bool {
     } 
     n % divisor == 0   // last expression is returned (if no semicolon)
 }
+
+
+// Methods
+fn use_rect() {
+    let mut rect = Rectangle {width: 10, height: 5};
+    println!("Area: {}", rect.area());
+    rect.incr_width(5);
+    println!("New Area: {}", rect.area());
+}
+
+
+// Properties
+struct Rectangle {
+    width: u32,
+    height: u32
+}
+
+
+// Methods
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn incr_width(&mut self, delta: u32) {
+        self.width += delta;
+    }
+}
