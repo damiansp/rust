@@ -37,3 +37,22 @@ let languages: Vec<String> = std::env::args().skip(1).collect();
 for lng in languages {
     println!("{}: {}", lng, if lng.len() % 2 == 0 { "functional" } else { "imperative" });
 }
+
+let x: Vec<f64> = vec![0.0, 0.1, 0.2, 0.3];
+let a: [f64; 4] = [0.0, 0.1, 0.2, 0.3];
+let x_slice: &[f64] = &x;  // this and following auto-converted to  `&[f64; 4]`
+let a_slice: &[f64] = &a;
+
+
+fn print_slice(n: &[f64]) {
+    for elem in n {
+        print!("{} ", elem);
+    }
+    println!();
+}
+
+print_slice(&x);  // works on both Vec and array
+print_slice(&a);  
+print_slice(&x[1..3]);
+print_slice(&x_slice[0..2]);
+
