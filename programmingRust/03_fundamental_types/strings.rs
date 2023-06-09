@@ -39,3 +39,8 @@ let bits = vec!["veni", "vidi", "vici"];
 assert_eq!(bits.concat(), "venividivici");
 assert_eq!(bits.join(", "), "veni, vidi, vici");
 
+assert!("ONE".to_lowercase() == "one");
+assert_eq!("ಠ_ಠ".replace("ಠ", "o"), "o_o");
+for word in "veni, vidi, vici".split(", ") {
+    assert!(word.starts_with("v"));
+}
