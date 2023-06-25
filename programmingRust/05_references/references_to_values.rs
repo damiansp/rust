@@ -19,7 +19,7 @@ fn main() {
 }
 
 
-type Table = HashMap<String, Vec<String>>;
+type Table = HashMap<&String, &Vec<String>>;
 
 
 fn show(table: &Table) {
@@ -28,5 +28,12 @@ fn show(table: &Table) {
         for work in works {
             println!("  {work}");
         }
+    }
+}
+
+
+fn sort_works(table: &mut Table) {
+    for (_artist, works) in table {
+        works.sort();
     }
 }
