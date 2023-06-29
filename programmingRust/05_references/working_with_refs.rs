@@ -21,14 +21,45 @@ fn main() {
     let a = 10;
     let b = 20;
     let mut c = &a;
-    if some_condition {
-        c = &b;
-    }
-    assert!(*c == 10 || *c == 20);
+    //if some_condition {
+    //    c = &b;
+    //}
+    //assert!(*c == 10 || *c == 20);
+
+    let point = Point{x: 1000, y: 729};
+    let pp: &Point = &point;
+    let ppp: &&Point = &pp;
+    let pppp: &&&Point = &ppp;  // but why would you do this??!!
+    assert_eq!(pppp.y, 729);
+
+    let d = 10;
+    let e = 10;
+    let rd = &d;
+    let re = &e;
+    let rrd = &rd;
+    let rre = &re;
+    assert!(rrd == rre);             // values equal
+    assert!(!std::ptr::eq(rd, re));  // not same objects in memory
+    //assert!(rd == rrd);            // err type mismatch: &i32, &&i32
+    assert!(rd == *rrd);             // ok
+
+    let f = &factorial(6);
+    assert_eq!(f + &1009, 1729);
 }
 
 
 struct Anime {
     name: &'static str,
     bechdel_pass: bool
+}
+
+
+struct Point {
+    x: i32,
+    y: i32
+}
+
+
+fn factorial(n: usize) -> usize {
+    (1 .. n + 1).product()
 }
