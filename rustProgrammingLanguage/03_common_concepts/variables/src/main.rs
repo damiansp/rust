@@ -11,4 +11,17 @@ fn main() {
         println!("x (inner) = {x}");
     }
     println!("x = {x}");
+
+    let x = 2.; // f64
+    let y: f32 = 3.;
+
+    let sum = 5 + 10;
+    let diff = 95.5 - 4.3;
+    let prod = 4 * 30;
+    let quot = 56.7 / 32.2;
+    let trunc = -5 / -3; // -1
+    let rem = 43 % 5;
+    
+    let t = true;
+    let f: bool = false;
 }
