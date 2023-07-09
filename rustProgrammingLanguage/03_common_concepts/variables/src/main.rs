@@ -24,4 +24,13 @@ fn main() {
     
     let t = true;
     let f: bool = false;
+
+    let c = 'z';
+    let z: char = 'Z';
+
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+    let (a, b, c) = tup;
+    println!("b: {b}");
+    let five_o = tup.0;
+    println!("five-o: {five_o}");
 }
