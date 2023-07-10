@@ -1,3 +1,7 @@
+//3458790//3458790//3458790//3458790//3458790//3458790//3458790//3458790
+use std::io;
+
+
 const THREE_HRS_IN_SECS: u32 = 3 * 60 * 60;
 
 
@@ -33,4 +37,22 @@ fn main() {
     println!("b: {b}");
     let five_o = tup.0;
     println!("five-o: {five_o}");
+
+    let d = [1, 2, 3, 4, 5];
+    let months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", 
+        "Oct", "Nov", "Dec"];
+    let e: [i32; 5] = [1, 2, 3, 4, 5];
+    let f = [3; 5]; // [3 3 3 3 3]
+    let first = e[0];
+    let second = e[1];
+
+    println!("Enter an array index: ");
+    let mut index = String::new();
+    io::stdin().read_line(&mut index).expect("Failed to read line");
+    let index: usize = 
+        index.trim().parse().expect("Index not a number");
+    let element = d[index];
+    println!(
+        "The value of the element at index {} is {:?}", index, element);
 }
