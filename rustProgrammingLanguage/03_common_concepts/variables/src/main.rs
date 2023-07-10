@@ -55,4 +55,17 @@ fn main() {
     let element = d[index];
     println!(
         "The value of the element at index {} is {:?}", index, element);
+
+    another_fn(42);
+    print_labeled_measurement(5, 'h');
+}
+
+
+fn another_fn(x: i32) {
+    println!("Another function was passed {x}!");
+}
+
+
+fn print_labeled_measurement(value: i32, unit_label: char) {
+    println!("{value}({unit_label})");
 }
