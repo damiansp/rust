@@ -1,3 +1,7 @@
+static mut STASH: &i32 = &128;
+static WORTH_POINTING_AT: i32 = 1000;
+
+
 fn main() {
     let x = 10;
     let r = &x;           // shared ref to x
@@ -45,6 +49,10 @@ fn main() {
 
     let f = &factorial(6);
     assert_eq!(f + &1009, 1729);
+
+    // Receiving refs as func args
+    f(&WORTH_POINTING_AT);
+    println!("STASH: {STASH}");
 }
 
 
@@ -62,4 +70,11 @@ struct Point {
 
 fn factorial(n: usize) -> usize {
     (1 .. n + 1).product()
+}
+
+
+fn f(p: &'static i32) {
+    unsafe {
+        STASH = p;
+    }
 }
