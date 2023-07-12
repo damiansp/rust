@@ -53,6 +53,27 @@ fn main() {
     // Receiving refs as func args
     f(&WORTH_POINTING_AT);
     println!("STASH: {STASH}");
+
+    let s;
+    {
+        let parabola = [9, 4, 1, 0, 1, 4, 9];
+        s = smallest(&parabola);
+    }
+    // assert_eq!(*s, 0); // points to elem of dropped array
+
+    {
+        let parab = [9, 4, 1, 0, 1, 4, 9];
+        let t = smallest(&parab);
+        assert_eq!(*t, 0); // ok, parab still alive
+    }
+
+    let u;
+    {
+        let x = 10;
+        u = S{ r: &x };
+    }
+    // reads from dropped x; won't compile w/o giving r static life in S
+    //assert_eq!(*s.r, 10); 
 }
 
 
@@ -77,4 +98,21 @@ fn f(p: &'static i32) {
     unsafe {
         STASH = p;
     }
+}
+
+
+// fn smallest<'a>(v: &'a [i32]) -> &'a i32 { ... }
+fn smallest(v: &[i32]) -> &i32 {
+    let mut s = &v[0];
+    for r in &v[1..] {
+        if *r < *s {
+            s = r;
+        }
+    }
+    s
+}
+
+
+struct S {
+    r: &'static i32
 }
