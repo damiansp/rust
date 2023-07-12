@@ -58,6 +58,12 @@ fn main() {
 
     another_fn(42);
     print_labeled_measurement(5, 'h');
+
+    let five = five();
+    println!("five: {five}");
+
+    let six = increment(5);
+    println!("six: {six}");
 }
 
 
@@ -68,4 +74,14 @@ fn another_fn(x: i32) {
 
 fn print_labeled_measurement(value: i32, unit_label: char) {
     println!("{value}({unit_label})");
+}
+
+
+fn five() -> i32 {
+    5
+}
+
+
+fn increment(x: i32) -> i32 {
+    x + 1
 }
