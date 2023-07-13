@@ -74,6 +74,17 @@ fn main() {
     }
     // reads from dropped x; won't compile w/o giving r static life in S
     //assert_eq!(*s.r, 10); 
+
+    let v = 10;
+    let q;
+    {
+        let p = 20;
+        {
+            let t = T{x: &v, y: &p};
+            q = t.x;
+        }
+    }
+    println!("{r}")
 }
 
 
@@ -115,4 +126,21 @@ fn smallest(v: &[i32]) -> &i32 {
 
 struct S {
     r: &'static i32
+}
+
+// alternately (and better, I'd say)
+srtuct S2<'a> {
+    r: &'a i32
+}
+
+
+struct TBad {
+    x: &'a i32,
+    y: &'a i32
+}
+
+
+struct T<'a, 'b> {
+    x: &'a i32,
+    y: &'b i32
 }
