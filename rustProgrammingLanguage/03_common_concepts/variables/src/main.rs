@@ -67,10 +67,14 @@ fn main() {
 
     let num = 3;
     if num < 5 {
-        println!("condition was true");
+        println!("< 5");
+    } else if num < 10{
+        println!("< 10");
     } else {
-        println!("condition was false");
+        println!(">= 10");
     }
+    let condition = true;
+    let conditional_n = if condition { 5 } else { 6 };
 }
 
 
