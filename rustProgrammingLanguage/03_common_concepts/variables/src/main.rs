@@ -64,6 +64,13 @@ fn main() {
 
     let six = increment(5);
     println!("six: {six}");
+
+    let num = 3;
+    if num < 5 {
+        println!("condition was true");
+    } else {
+        println!("condition was false");
+    }
 }
 
 
