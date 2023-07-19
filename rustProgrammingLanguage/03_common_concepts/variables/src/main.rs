@@ -159,4 +159,8 @@ fn for_in_ex() {
     for element in a {
         println!("element = {}", element);
     }
+    for n in (1..4).rev() {
+        println!("{n}!")
+    }
+    println!("Blastoff!!!")
 }
