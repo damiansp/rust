@@ -84,7 +84,11 @@ fn main() {
             q = t.x;
         }
     }
-    println!("{r}")
+    println!("{r}");
+    basics1();
+    basics2();
+    basics3();
+    basics4();
 }
 
 
@@ -143,4 +147,78 @@ struct TBad {
 struct T<'a, 'b> {
     x: &'a i32,
     y: &'b i32
+}
+
+
+fn basics1() {
+    let mut x = 10;
+    let r1 = &x;
+    let r2 = &x; // ok: mult shared borrows permitted
+    x += 10;     // err: cannot assign to x because it's borrowed
+    // err: cannot borrow `x` as mutable because it is also borrowed as 
+    // immutable
+    let m = &mut x;
+    // refs used here so lifetimes must last at least this long
+    println!("{r1}, {r2}, {m}");
+}
+
+
+fn basics2() {
+    let mut y = 20;
+    let m1 = &mut y;  // ok: mutable borrow starts here
+    let m2 = &mut y;  // err: cannot borrow `y` as mutable more than once
+    // err: cannot use `y` because it was mutably borrowed
+    let z = y;
+    println!("{m1}, {m2}, {z}"); // references used here
+}
+
+
+fn basics3() {
+    let mut w = (107, 109);
+    let r = &w;
+    let r0 = &r.0;      // ok: reborrowing shared as shared
+    let m1 = &mut r.1;  // err: can't reborrow shared as mutable
+    println!("{r0}");   // r0 used here
+}
+
+
+fn basics4() {
+    let mut v = (123, 231);
+    let m = &mut v;
+    let m0 = &mut m.0;  // ok: reborrowing mutable fr mutable
+    *m0 = 456;
+    // ok: reborrowing shared fr mutable (no overlap w m0)
+    let r1 = &m.1;
+    v.1;  // err: access through other paths still forbidden
+    println!("{r1}");  // r1 used here
+}
+
+
+/* C++ example
+struct File {
+    int descriptor;
+    File(int d): descriptor(d) {}
+    File& operator=(const File &rhs) {
+        close(descriptor);
+        descriptor = dup(rhs.descriptor);
+        return *this;
+    }
+};
+*/
+
+
+/* Rust analogue*/
+struct File {
+    descriptor: i32
+}
+
+
+fn new_file(d: i32) -> File {
+    File{descriptor: d}
+}
+
+
+fn clone_from(this: &mut File, rhs: &File) {
+    close(this.descriptor);
+    this.descriptor = dup(rhs.descriptor);
 }
