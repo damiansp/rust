@@ -1,6 +1,7 @@
 fn main() {
     let rect = Rectangle{width: 30, height: 50};
     println!("Area: {}", get_area(&rect));
+    println!("rect is {:#?}", rect);
 }
 
 
@@ -18,6 +19,8 @@ fn get_area(rect: &Rectangle) -> u32 {
     rect.width * rect.height
 }
 
+
+#[derive(Debug)]  // allows println!() defaults
 struct Rectangle {
     width: u32,
     height: u32
