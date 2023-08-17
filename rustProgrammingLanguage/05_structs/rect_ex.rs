@@ -7,6 +7,7 @@ fn main() {
     let rect3 = Rectangle{width: 60, height: 45};
     println!("rect can hold rect2: {}", rect.can_hold(&rect2));
     println!("rect can hold rect3: {}", rect.can_hold(&rect3));
+    let square = Rectangle::square(12);
 }
 
 
@@ -33,6 +34,10 @@ struct Rectangle {
 
 
 impl Rectangle {
+    fn square(size: u32) -> Self {  // Self aliases type after <impl> (here: Rectangle)
+        Self {width: size, height: size}    
+    }
+
     fn area(&self) -> u32 {
         self.width * self.height
     }
