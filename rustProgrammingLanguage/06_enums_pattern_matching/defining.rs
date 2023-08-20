@@ -7,6 +7,9 @@ fn main() {
     //    kind: IPAddressTypeSimple::V6, address: String::from("::1")}
     let  home = IPAddress::V4(String::from("127.0.0.1"));
     let loopback = IPAddress::V6(String::from("::1"));
+
+    let m = Message::Write(String::from("Hello!"));
+    //m.call()
 }
 
 enum IPAddressTypeSimple {
@@ -30,3 +33,14 @@ struct IPAddressVerbose {
 }
 
 
+enum Message {
+    Quit,
+    Move {x: i32, y: i32},
+    Write(String),
+    ChangeColor(i32, i32, i32)n
+}
+
+
+impl Message {
+    fn call(&self) { /* define here... */; }
+}
