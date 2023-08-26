@@ -3,8 +3,10 @@ fn main() {
     match dice_roll {
         3 => add_fancy_hat(),
         7 => remove_fancy_hat(),
-        _ => move_player()
+        _ => move_player()  // could also be just: _ => () 
     }
+
+
 }
 
 
