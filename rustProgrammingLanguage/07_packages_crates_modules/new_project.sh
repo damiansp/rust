@@ -1,9 +1,9 @@
-cargo new my-project
+cargo new backyard
 
 echo
-echo my-project:
-ls my-project
+echo backyard:
+ls backyard
 
 echo
 echo src:
-ls my-project/src
+ls backyard/src
