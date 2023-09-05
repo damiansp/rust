@@ -14,3 +14,12 @@ mod front_of_house {
         fn take_payment() {}
     }
 }
+
+
+pub fn eat_at_restaurant() {
+    // Abs path
+    //create::front_of_house::hosting::add_to_waitlist();
+
+    // Rel path
+    front_of_house::hosting::add_to_waitlist();
+}
