@@ -16,10 +16,15 @@ mod front_of_house {
 }
 
 
+use crate::front_of_house::hosting;
+
 pub fn eat_at_restaurant() {
     // Abs path
     //create::front_of_house::hosting::add_to_waitlist();
 
     // Rel path
-    front_of_house::hosting::add_to_waitlist();
+    //front_of_house::hosting::add_to_waitlist();
+
+    // After use import
+    hosting::add_to_waitlist();
 }
