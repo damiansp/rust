@@ -2,7 +2,11 @@ use std::ftm::Result;
 use std::io::Result as IoResult;
 use std::io::{self, Write}; // self is io
 
+mod front_of_house;
 
+pub use crate::front_of_house::hosting;
+
+/* To move...
 mod front_of_house {
     pub mod hosting {
         pub fn add_to_waitlist() {}
@@ -19,9 +23,9 @@ mod front_of_house {
         pub fn take_payment() {}
     }
 }
+*/
 
 
-pub use crate::front_of_house::hosting;
 
 pub fn eat_at_restaurant() {
     // Abs path
