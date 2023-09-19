@@ -1,5 +1,6 @@
 use std::ftm::Result;
 use std::io::Result as IoResult;
+use std::io::{self, Write}; // self is io
 
 
 mod front_of_house {
@@ -20,7 +21,7 @@ mod front_of_house {
 }
 
 
-use crate::front_of_house::hosting;
+pub use crate::front_of_house::hosting;
 
 pub fn eat_at_restaurant() {
     // Abs path
