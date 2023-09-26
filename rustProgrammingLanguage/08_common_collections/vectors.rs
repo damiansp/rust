@@ -18,6 +18,26 @@ fn main() {
     // let does_not_exist = w.get(100);
 
     let mut u = vec![1, 2, 3, 4, 5];
-    let first = &u[0];
+    //let first = &u[0];
     // u.push(6);  // err: attempting to mutate while holding a reference
+
+    for i in &v {
+        println!("{i}");
+    }
+
+    for i in &mut u {
+        *i += 50;
+    }
+
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12)];
+}
+
+
+enum SpreadsheetCell {
+    Int(i32),
+    Float(f64),
+    Text(String)
 }
