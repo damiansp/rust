@@ -11,4 +11,8 @@ fn main() {
     let h = String::from("Hello, ");
     let w = String::from("world!");
     let hw = h + &w; // h has been moved here and can no longer be used
+    let t = String::from("tic");
+    let u = String::from("tac");
+    let v = String::from("toe");
+    let ttt = format!("{t}-{u}-{v}");
 }
