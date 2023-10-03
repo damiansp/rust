@@ -15,4 +15,6 @@ fn main() {
     let u = String::from("tac");
     let v = String::from("toe");
     let ttt = format!("{t}-{u}-{v}");
+
+    //let h_char = h[0];  // err (String is not indexable)
 }
