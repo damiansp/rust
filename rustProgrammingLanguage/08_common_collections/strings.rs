@@ -17,4 +17,8 @@ fn main() {
     let ttt = format!("{t}-{u}-{v}");
 
     //let h_char = h[0];  // err (String is not indexable)
+
+    let ruskij = "Здрастбуйте";
+    let zd = &ruskij[0..4];    // not recommended but allowed
+    //let huh = &ruskij[0..1]  // not even allowed
 }
