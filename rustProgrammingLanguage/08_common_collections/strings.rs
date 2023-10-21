@@ -21,4 +21,12 @@ fn main() {
     let ruskij = "Здрастбуйте";
     let zd = &ruskij[0..4];    // not recommended but allowed
     //let huh = &ruskij[0..1]  // not even allowed
+
+    for c in "Зд".chars() {
+        println!("{c}");  // З,  д, ...
+    }
+
+    for b in "Зд".bytes() {
+        println!("{b}");  // 208, 151, ...
+    }
 }
