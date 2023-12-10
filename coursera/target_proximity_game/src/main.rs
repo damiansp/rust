@@ -1,8 +1,10 @@
 //--------//--------//--------//--------//--------//--------//--------//--------
+use rand::Rng;
 use std::io;
 
 
 fn main() {
+    let _ = generate_number(100);
 }
 
 
@@ -28,7 +30,7 @@ fn collect_input<T: std::str::FromStr>(prompt: &str) -> T {
     loop {
         println!("{prompt}");
         let mut input = String::new();
-        io::stdin().read_line(&mut input).expect("Failed to read input")
+        io::stdin().read_line(&mut input).expect("Failed to read input");
         match input.trim().parse() {
             Ok(val) => return val,
             Err(_) => continue
@@ -54,4 +56,14 @@ fn collect_players() -> Vec<Player> {
         players.push(Player{name, score: 0});
     }
     players
+}
+
+
+fn create_max_range(players: &Vec<Player>) -> u32 {
+    players.len() as u32 * 50
+}
+
+
+fn generate_number(max_range: u32) -> u32 {
+    rand::thread_rng().gen_range(1..max_range)
 }
