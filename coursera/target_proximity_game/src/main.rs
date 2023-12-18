@@ -2,6 +2,8 @@
 use rand::Rng;
 use std::io;
 
+use reqwest::*;
+
 
 fn main() {
     let _ = generate_number(100);
@@ -63,7 +65,22 @@ fn create_max_range(players: &Vec<Player>) -> u32 {
     players.len() as u32 * 50
 }
 
-
+/*
 fn generate_number(max_range: u32) -> u32 {
     rand::thread_rng().gen_range(1..max_range)
+}
+*/
+
+
+#[tokio::main]
+async fn generate_number(max_range: u32) -> Result<u32> {
+    let url = (
+        "https://www.random.org/integers/?num=1&min=1&max={MAX}&col=1&base=10&format=plain&rnd=new");
+    let body = reqwest::get(url.replace("{MAX}", &max_range.to_string()))
+        .await?
+        .text()
+        .await?;
+    let val = body.trim().parse::<u32>().expect("Error parsing");
+    println!("value: {val}");
+    Ok(val)
 }
