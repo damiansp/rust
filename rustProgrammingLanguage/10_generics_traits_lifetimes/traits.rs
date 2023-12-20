@@ -8,13 +8,24 @@ fn main() {
             "The Pittsburgh Penguins once again are the best team in the NHL.")
     };
     println!("New article: {}", article.summarize());
+
+    let tweet = Tweet {
+        username: String::from("horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people..."),
+        is_reply: false,
+        is_retweet: false
+    };
+    println!("1 new tweet: {}", tweet.summarize());
 }
 
 
 pub trait Summary {
+    fn summarize_author(&self) -> String;
+
     fn summarize(&self) -> String {
         // default behavior
-        String::from("(Read more...)")
+        format!("(Read more from {}...)", self.summarize_author())
     }
 }
 
@@ -28,8 +39,16 @@ pub struct NewsArticle {
 
 
 impl Summary for NewsArticle {
+    fn summarize_author(&self) -> String {
+        format!("by {}", self.author)
+    }
+
     fn summarize(&self) -> String {
-        format!("{}, by {} ({})", self.headline, self.author, self.location)
+        format!(
+            "{}, {} ({})",
+             self.headline,
+              self.summarize_author(),
+              self.location)
     }
 }
 
@@ -43,8 +62,11 @@ pub struct Tweet {
 
 
 impl Summary for Tweet {
+    fn summarize_author(&self) -> String {
+        format!("@{}", self.username)
+    }
     fn summarize(&self) -> String {
-        format!("{}: {}", self.username, self.content)
+        format!("{}: {}", self.summarize_author(), self.content)
     }
 }
 
