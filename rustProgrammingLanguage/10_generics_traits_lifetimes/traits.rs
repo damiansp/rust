@@ -1,6 +1,21 @@
 //--------//--------//--------//--------//--------//--------//--------//--------
+fn main() {
+    let article = NewsArticle{
+        headline: String::from("Penguins win Stanley Cup!"),
+        location: String::from("Pittsburgh, PA, USA"),
+        author: String::from("Hockey Nut"),
+        content: String::from(
+            "The Pittsburgh Penguins once again are the best team in the NHL.")
+    };
+    println!("New article: {}", article.summarize());
+}
+
+
 pub trait Summary {
-    fn summarize(&self) -> String;
+    fn summarize(&self) -> String {
+        // default behavior
+        String::from("(Read more...)")
+    }
 }
 
 
