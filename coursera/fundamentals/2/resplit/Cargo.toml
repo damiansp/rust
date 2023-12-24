@@ -1,8 +1,0 @@
-[package]
-name = "resplit"
-version = "0.1.0"
-edition = "2021"
-author = "Alfredo Deza <alfredo@deza.pe>"
-
-[dependencies]
-clap = {version = "4", features = ["derive"]}
