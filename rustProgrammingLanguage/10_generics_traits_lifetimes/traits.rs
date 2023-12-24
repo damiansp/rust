@@ -71,6 +71,11 @@ impl Summary for Tweet {
 }
 
 
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+
 /*  elsewhere
 use aggregator::{Summary, Tweet};
 
