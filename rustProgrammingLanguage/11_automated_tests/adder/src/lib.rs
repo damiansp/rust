@@ -20,6 +20,11 @@ impl Rectangle {
 pub fn add_two(a: i32) -> i32 { a + 2 }
 
 
+pub fn greet(name: &str) -> String {
+    format!("Hello {name}")
+}
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -51,6 +56,12 @@ mod tests {
 
     #[test]
     fn it_adds_two() { assert_eq!(add_two(2), 4); }
+
+    #[test]
+    fn greeting_contains_name() {
+        let res = greet("Carol");
+        assert!(res.contains("Carol"));
+    }
 }
 
 
