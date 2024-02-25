@@ -60,7 +60,7 @@ mod tests {
     #[test]
     fn greeting_contains_name() {
         let res = greet("Carol");
-        assert!(res.contains("Carol"));
+        assert!(res.contains("Carol"), "Greeting did not contain name: {res}");
     }
 }
 
