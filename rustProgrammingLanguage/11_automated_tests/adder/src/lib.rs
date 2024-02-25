@@ -25,6 +25,21 @@ pub fn greet(name: &str) -> String {
 }
 
 
+pub struct Guess {
+    value: i32
+}
+
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess must be on [1, 100], got {value}");
+        }
+        Guess{value}
+    }
+}
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -61,6 +76,12 @@ mod tests {
     fn greeting_contains_name() {
         let res = greet("Carol");
         assert!(res.contains("Carol"), "Greeting did not contain name: {res}");
+    }
+
+    #[test]
+    #[should_panic]
+    fn greater_than_100() {
+        Guess::new(200);
     }
 }
 
